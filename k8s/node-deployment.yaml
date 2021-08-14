@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+  labels:
+    name: node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: node
+        image: komalsingh54/fastify
+        env:
+        - name: DB_HOST
+          value: "mongodb"
+        - name: DB_PORT
+          value: "27017"
+        - name: DB_NAME
+          value: "animal"
+      restartPolicy: Always
